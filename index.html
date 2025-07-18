@@ -126,11 +126,13 @@
                 // 密码处理
                 pw.focus();
                 
-                // 确保输入框始终保持焦点
-                document.addEventListener('click', (e) => {
-                    if(e.target !== pw) {
-                        pw.focus();
-                    }
+                // 阻止点击屏幕其他地方出现输入框
+                document.addEventListener('click', (e) => e.preventDefault());
+                
+                // 允许点击输入框本身
+                pw.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    pw.focus();
                 });
                 
                 pw.addEventListener('input', () => {
