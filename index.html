@@ -44,7 +44,7 @@
 
         #loading b {
 
-            color: #d7be0f; /* 加载字母颜色 */
+            color: #d7be0f;
 
         }
 
@@ -118,7 +118,7 @@
 
         .line::after {
 
-            content: ""; /* 口 */
+            content: "";
 
             position: absolute;
 
@@ -218,9 +218,7 @@
 
                 document.getElementById('loading').style.display = 'none';
 
-                const content = document.getElementById('content');
-
-                content.style.display = 'grid';
+                document.getElementById('content').style.display = 'grid';
 
                
 
@@ -229,30 +227,6 @@
                 const line = document.querySelector('.line');
 
                 const cube = document.querySelector('.cube');
-
-               
-
-                // 自动聚焦功能
-
-                const autoFocus = () => {
-
-                    if(document.activeElement !== pw) {
-
-                        pw.focus();
-
-                    }
-
-                };
-
-               
-
-                // 初始聚焦
-
-                autoFocus();
-
-                // 定期检查聚焦状态
-
-                setInterval(autoFocus, 1000);
 
                
 
@@ -273,6 +247,8 @@
                
 
                 // 密码处理
+
+                pw.focus(); // 确保输入框获得焦点
 
                 pw.addEventListener('input', () => {
 
@@ -298,7 +274,7 @@
 
                                 document.getElementById('err').style.opacity = 0;
 
-                                pw.focus();
+                                pw.focus(); // 错误后重新聚焦
 
                             }, 2000);
 
@@ -311,20 +287,6 @@
             }, 1500);
 
         };
-
-        // 确保页面获得焦点时输入框自动聚焦
-
-        document.addEventListener('visibilitychange', function() {
-
-            if (!document.hidden) {
-
-                const pw = document.getElementById('pw');
-
-                setTimeout(() => pw.focus(), 100);
-
-            }
-
-        });
 
     </script>
 
