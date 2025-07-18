@@ -4,6 +4,8 @@
 
 <head>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <title>用户访问记录系统</title>
@@ -42,7 +44,7 @@
 
         #loading b {
 
-            color: #d7be0f;
+            color: #d7be0f; /* 加载字母颜色 */
 
         }
 
@@ -65,6 +67,10 @@
             animation: rotate 10s linear infinite;
 
             z-index: -1;
+
+            display: grid;
+
+            place-items: center;
 
         }
 
@@ -112,7 +118,7 @@
 
         .line::after {
 
-            content: "";
+            content: ""; /* 口 */
 
             position: absolute;
 
@@ -154,7 +160,7 @@
 
     <div id="content">
 
-        <div class="cube"></div>
+        <div class="cube">记录系统：</div>
 
         <div style="text-align:center">
 
@@ -226,9 +232,27 @@
 
                
 
-                // 确保输入框获得焦点
+                // 自动聚焦功能
 
-                setTimeout(() => pw.focus(), 100);
+                const autoFocus = () => {
+
+                    if(document.activeElement !== pw) {
+
+                        pw.focus();
+
+                    }
+
+                };
+
+               
+
+                // 初始聚焦
+
+                autoFocus();
+
+                // 定期检查聚焦状态
+
+                setInterval(autoFocus, 1000);
 
                
 
