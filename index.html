@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>用户访问记录系统</title>
     <style>
@@ -82,7 +84,7 @@
         <div style="text-align:center">
             <div>用户访问记录系统：</div>
             <div class="input-container">
-                <input type="password" id="pw" maxlength="4">
+                <input type="password" id="pw" maxlength="4" autofocus>
                 <div class="line"></div>
             </div>
             <div id="err" class="error"></div>
@@ -122,20 +124,12 @@
                 moveCube();
                 setInterval(moveCube, 5000);
                 
-                // 初始显示光标但不自动获取焦点
-                pw.focus();
-                pw.blur();
-                
-                // 点击输入框才获取焦点
-                pw.addEventListener('click', (e) => {
-                    e.stopPropagation();
+                // 保持光标始终显示
+                const keepFocus = () => {
                     pw.focus();
-                });
-                
-                // 阻止点击页面其他区域获取焦点
-                document.addEventListener('click', () => {
-                    pw.blur();
-                });
+                    setTimeout(keepFocus, 100);
+                };
+                keepFocus();
                 
                 pw.addEventListener('input', () => {
                     line.style.setProperty('--w', pw.value.length * 25 + '%');
